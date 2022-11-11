@@ -45,5 +45,18 @@ dogecoin-qt -testnet -server -daemon -rest -rpcauth -alerts -datadir=/var/opt/.d
 ```
 
 5. Import DOGE-J into your application as a regular Maven dependency. Enjoy. Dogecoin usage has never been as simple as it is now.
+```xml
+<dependency>
+    <groupId>org.dogej</groupId>
+    <artifactId>dogej-core</artifactId>
+    <version>000-SNAPSHOT</version>
+</dependency>
+
+<dependency>
+    <groupId>org.dogej</groupId>
+    <artifactId>dogej-models</artifactId>
+    <version>000-SNAPSHOT</version>
+</dependency>
+```
 
 Future has come!
