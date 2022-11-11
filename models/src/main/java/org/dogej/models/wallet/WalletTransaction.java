@@ -23,6 +23,7 @@ public class WalletTransaction {
     private Long blockindex;
     private Double fee;
     private Boolean abandoned;
+    private Long blocktime;
 
     @JsonProperty public String getAccount() {
         return account;
@@ -166,6 +167,14 @@ public class WalletTransaction {
 
     public void setFee(Double fee) {
         this.fee = fee;
+    }
+
+    @JsonProperty public Long getBlocktime() {
+        return blocktime;
+    }
+
+    public void setBlocktime(Long blocktime) {
+        this.blocktime = blocktime;
     }
 
     @Override
