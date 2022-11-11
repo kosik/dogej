@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+        
+    <parent>
+        <artifactId>dogej</artifactId>
+        <groupId>org.dogej</groupId>
+        <version>000-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    
+    <artifactId>dogej-core</artifactId>
+    <packaging>jar</packaging>
+
+    <name>doge-j core</name>
+    <description>Dogecoin client core module</description>
+
+    <properties>
+        <httpclient>4.5.13</httpclient>
+        <httpcore>4.4.15</httpcore>
+    </properties>
+
+    <build>
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/src/test/resources</directory>
+            </testResource>
+        </testResources>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.dogej</groupId>
+            <artifactId>dogej-models</artifactId>
+            <version>${app-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>${httpcore}</version>
+        </dependency>
+
+    </dependencies>
+    
+</project>
