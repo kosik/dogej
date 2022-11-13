@@ -1,6 +1,8 @@
 package org.dogej.commands;
 
 import io.github.kosik.simplejsonrpc.client.JsonRpcClient;
+import org.dogej.models.wallet.QueryOptions;
+import org.dogej.models.wallet.Unspent;
 import org.dogej.models.wallet.WalletInfo;
 import org.dogej.models.wallet.WalletTransaction;
 
@@ -252,6 +254,31 @@ public class WalletAPI extends Operation {
                 .params(passPhrase)
                 .returnAs(String.class).execute();
 
+    }
+
+    /**
+     *
+     * @param minconf - The minimum confirmations to filter
+     * @param maxconf - The maximum confirmations to filter
+     * @param addresses - filter to only include txouts paid to specified addresses
+     * @param includeUnsafe - Include outputs that are not safe to spend
+     * @param queryOptions query options
+     * @return array of unspent transaction outputs with between minconf and maxconf (inclusive) confirmations.
+     *
+     * Request body params example:  "params": [0, 9999999, [] , true, { "maximumAmount": 100 }]
+     */
+    public Collection<Unspent> listUnspent(final Long minconf, final Long maxconf, final String[] addresses,
+                                           final boolean includeUnsafe, final QueryOptions queryOptions){
+        return getJsonRpcClient().createRequest()
+                .version(JSON_RPC_VERSION)
+                .id(generateId())
+                .method("listunspent")
+                .params(null == minconf ? 0 : minconf,
+                        null == maxconf ? 1 : maxconf,
+                        null == addresses ? new String[]{} : addresses,
+                        includeUnsafe,
+                        null == queryOptions ? new QueryOptions() : queryOptions)
+                .returnAsList(Unspent.class).execute();
     }
 
 }

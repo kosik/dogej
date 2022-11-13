@@ -196,6 +196,9 @@ public class WalletTransaction {
                 ", generated=" + generated +
                 ", blockhash='" + blockhash + '\'' +
                 ", blockindex=" + blockindex +
+                ", fee=" + fee +
+                ", abandoned=" + abandoned +
+                ", blocktime=" + blocktime +
                 '}';
     }
 
