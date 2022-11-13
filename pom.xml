@@ -52,6 +52,7 @@
     <modules>
         <module>core</module>
         <module>models</module>
+        <module>utility</module>
     </modules>
 
     <build>
