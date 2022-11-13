@@ -24,7 +24,7 @@ Below is an example of how to receive block header information, and how to send 
 ```
 No need to focus on protocol specifics and other routines. Just work on your application logic. 
 
-Find more examples [here](https://github.com/kosik/dogej/blob/main/core/src/main/java/org/dogej/HelloDogecoin.java).
+Find more examples [here](https://github.com/kosik/dogej/blob/main/utility/src/main/java/org/dogej/HelloDogecoin.java).
 
 ## Configurations
 
