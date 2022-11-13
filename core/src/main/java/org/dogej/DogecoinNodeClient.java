@@ -36,7 +36,6 @@ public class DogecoinNodeClient {
     private Transport buildTransport(final String host, final String credentials) {
         return new Transport() {
             @Override public String pass(final String requestBody) throws IOException {
-                System.out.println(requestBody);
                 final HttpPost post = new HttpPost(host);
                 post.setEntity(new StringEntity(requestBody, StandardCharsets.UTF_8));
 
@@ -44,9 +43,7 @@ public class DogecoinNodeClient {
                 post.setHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials);
 
                 try (final CloseableHttpResponse httpResponse = getHttpClient().execute(post)) {
-                    String response = EntityUtils.toString(httpResponse.getEntity(), StandardCharsets.UTF_8);
-                    System.out.println(response);
-                    return response;
+                    return EntityUtils.toString(httpResponse.getEntity(), StandardCharsets.UTF_8);
                 } }
         };
     }
