@@ -2,7 +2,7 @@
 
 DOGE-J is an open toolkit to operate with your money straight in the Dogecoin blockchain.
 
-It is a Java wrapper to intercommunicate with [Dogecoin-core](https://github.com/dogecoin/dogecoin) node.
+It is a Java client to intercommunicate with [Dogecoin-core](https://github.com/dogecoin/dogecoin) node API.
 
 The purpose of this library is open comprehensive implementation of Dogecoin JSON-RPC protocol in Java.
 
