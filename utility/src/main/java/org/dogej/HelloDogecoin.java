@@ -10,18 +10,21 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class HelloDogecoin {
-    final private String WALLET_PASS_PHRASE = "secret";
+    final private String WALLET_PASS_PHRASE = System.getenv("WALLET_SECRET");
     private ObjectMapper objectMapper = new ObjectMapper();
 
     public static void main(final String[] args) {
+        final String dogeHost = System.getenv("DOGE_HOST");
+        final String userName = System.getenv("DOGE_USER");
+        final String pw = System.getenv("DOGE_PW");
 
-        final DogecoinNodeClient dogecoinClient
-                = new DogecoinNodeClient("http://127.0.0.1:22555", "myusername", "secret");
+        final DogecoinNodeClient dogecoinClient = new DogecoinNodeClient(dogeHost, userName, pw);
 
         try {
+
         new HelloDogecoin().blockchainAPIExample(dogecoinClient);
 
-        new HelloDogecoin().createWallet(dogecoinClient);
+//        new HelloDogecoin().createWallet(dogecoinClient);
 
         new HelloDogecoin().walletMaintenance(dogecoinClient);
 
@@ -106,7 +109,7 @@ public class HelloDogecoin {
         dogecoinClient.getWalletAPI().walletPassPhrase(WALLET_PASS_PHRASE, 5L);
 
         System.out.println("Money has being sent. The transaction id: "
-                + dogecoinClient.getWalletAPI().sendToAddress(addresses[0], 200D));
+                + dogecoinClient.getWalletAPI().sendToAddress(addresses[0], 0.05D));
 
         System.out.println("\n" + "List the wallet transactions:\n");
         dogecoinClient.getWalletAPI().listTransactions().stream().forEach(t -> System.out.println(t.toString()));

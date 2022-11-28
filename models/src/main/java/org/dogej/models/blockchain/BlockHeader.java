@@ -5,15 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class BlockHeader {
     private String hash;
     private Integer confirmations;
-
     private Long weight;
     private Long height;
     private Long version;
     private String versionHex;
     private String merkleroot;
-
     private Long time;
-
     private Long mediantime;
     private Long nonce;
     private String bits;
