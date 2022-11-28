@@ -11,6 +11,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.dogej.commands.BlockchainAPI;
+import org.dogej.commands.UtilAPI;
 import org.dogej.commands.WalletAPI;
 
 import java.io.IOException;
@@ -22,10 +23,10 @@ public class DogecoinNodeClient {
 
     private String host;
     private JsonRpcClient jsonRpcClient;
-    private Transport transport;
 
     private BlockchainAPI blockchainAPI;
     private WalletAPI walletAPI;
+    private UtilAPI utilAPI;
 
     public DogecoinNodeClient(final String host, final String username, final String pw) {
         this.host = host;
@@ -68,6 +69,10 @@ public class DogecoinNodeClient {
             walletAPI = new WalletAPI(getJsonRpcClient());
         }
         return walletAPI;
+    }
+
+    public UtilAPI getUtilAPI() {
+        return null == utilAPI ? utilAPI = new UtilAPI(getJsonRpcClient()) : utilAPI;
     }
 
     public String getHost() {
