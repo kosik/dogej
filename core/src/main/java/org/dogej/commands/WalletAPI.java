@@ -281,4 +281,37 @@ public class WalletAPI extends Operation {
                 .returnAsList(Unspent.class).execute();
     }
 
+
+    /**
+     * Adds an address or script (in hex) that can be watched as if it were in your wallet but cannot be used to spend.
+     * Requires a new wallet backup.
+     *
+     * Note: This call can take over an hour to complete if rescan is true, during that time, other rpc calls may report
+     * that the imported address exists but related transactions are still missing, leading to temporarily incorrect/bogus
+     * balances and unspent outputs until rescan completes.
+     *
+     * NB: If you have the full public key, you should call importpubkey instead of this.
+     * NB: importmulti to import more than one address.
+     * NB: If you import a non-standard raw script in hex form, outputs sending to it will be treated as change,
+     *      and not show up in many RPCs.
+     * NB: Use “getwalletinfo” to query the scanning progress.
+     *
+     * @param label An optional label, default=””
+     * @param rescan Rescan the wallet for transactions, default = true
+     * @param p2sh Add the P2SH version of the script as well, default = false
+     *
+     * @return NB: positive result is JSON-RPC null object
+     */
+    public void importAddress(final String address, final String label, final boolean rescan, final boolean p2sh){
+        getJsonRpcClient().createRequest()
+                .version(JSON_RPC_VERSION)
+                .id(generateId())
+                .method("importaddress")
+                .params(address,
+                        null == label ? "" : label,
+                        rescan, p2sh)
+                .returnAs(String.class).execute();
+    }
+
+
 }
