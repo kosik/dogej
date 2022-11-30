@@ -24,6 +24,7 @@ public class WalletTransaction {
     private Double fee;
     private Boolean abandoned;
     private Long blocktime;
+    private Boolean involvesWatchonly;
 
     @JsonProperty public String getAccount() {
         return account;
@@ -177,6 +178,14 @@ public class WalletTransaction {
         this.blocktime = blocktime;
     }
 
+    public Boolean getInvolvesWatchonly() {
+        return involvesWatchonly;
+    }
+
+    public void setInvolvesWatchonly(Boolean involvesWatchonly) {
+        this.involvesWatchonly = involvesWatchonly;
+    }
+
     @Override
     public String toString() {
         return "WalletTransaction{" +
@@ -199,7 +208,7 @@ public class WalletTransaction {
                 ", fee=" + fee +
                 ", abandoned=" + abandoned +
                 ", blocktime=" + blocktime +
+                ", involvesWatchonly=" + involvesWatchonly +
                 '}';
     }
-
 }
