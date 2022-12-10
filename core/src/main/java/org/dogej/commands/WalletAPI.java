@@ -274,7 +274,7 @@ public class WalletAPI extends Operation {
                 .id(generateId())
                 .method("listunspent")
                 .params(null == minconf ? 0 : minconf,
-                        null == maxconf ? 1 : maxconf,
+                        null == maxconf ? 9999999 : maxconf,
                         null == addresses ? new String[]{} : addresses,
                         includeUnsafe,
                         null == queryOptions ? new QueryOptions() : queryOptions)
