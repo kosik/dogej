@@ -1,6 +1,9 @@
 package org.dogej.commands;
 
 import io.github.kosik.simplejsonrpc.client.JsonRpcClient;
+
+import org.dogej.DomainException;
+import org.dogej.ErrorCodes;
 import org.dogej.models.wallet.QueryOptions;
 import org.dogej.models.wallet.Unspent;
 import org.dogej.models.wallet.WalletInfo;
@@ -138,8 +141,11 @@ public class WalletAPI extends Operation {
     }
     
     /**
-     * Send an amount to a given address.<p>
-     * Requires wallet passphrase to be set with walletpassphrase call if wallet is encrypted.
+     * Find arbitrary unspent-amounts on the wallet, decrease required amount from the one or more unspents.
+     * Send the required amount given toAddress. The remaining unspent minus commissions moveto a newly generated address
+     * whiting the wallet.
+     *
+     * NB: Requires wallet passphrase to be set with walletPassphrase call if wallet is encrypted.
      * @return The transaction id.
      */
     public String sendToAddress(final String toAddress, final Double amount){
@@ -152,18 +158,106 @@ public class WalletAPI extends Operation {
     }
 
     /**
+     * Sets the account associated with the given address.
+     * Account is internal wallet title. Node Is using for set of internal operations like move. Internal operations
+     * means it does not broadcast into blockchain.
+     *
+     * @param address The dogecoin address to be associated with an account.
+     * @param accountTitle The account to assign the address to.
+     * return Dogecoin node return null if the command execution is successful
+     */
+    @Deprecated public boolean setAccount(final String address, final String accountTitle){
+        if(null == address || "".equals(address) ||
+            null == accountTitle || "".equals(accountTitle))
+            throw new DomainException(ErrorCodes.InvalidInput, "err-invalid-input");
+
+        return null == getJsonRpcClient().createRequest()
+                .version(JSON_RPC_VERSION)
+                .id(generateId())
+                .method("setaccount")
+                .params(address, accountTitle)
+                .returnAs(String.class).execute() ? true : false;
+    }
+
+    /**
+     * Sent an amount from an account to a dogecoin address. Requires wallet passphrase to be set with walletpassphrase call.
+     * @param fromAccount (string, required) The name of the account to send funds from. May be the default account using "".
+     *                    Specifying an account does not influence coin selection, but it does associate the newly created
+     *                    transaction with the account, so the account's balance computation and transaction history can reflect the spend.
+     * @param toAddress (string, required) The dogecoin address to send funds to. setAccount
+     * @param amount (numeric or string, required) The amount in DOGE (transaction fee is added on top).
+     * @param minconf (numeric, optional, default=1) Only use funds with at least this many confirmations.
+     * @param comment (string, optional) A comment used to store what the transaction is for. This is not part of the transaction, just kept in your wallet.
+     * @param comment_to (string, optional) An optional comment to store the name of the person or organization to which
+     *                   you're sending the transaction. This is not part of the transaction, it is just kept in your wallet.
+     * @return "txid" (string) The transaction id.
+     */
+    @Deprecated public String sendFrom(final String fromAccount, final String toAddress, final Double amount,
+                                       final Integer minconf, final String comment, final String comment_to){
+
+        if(null == fromAccount || "".equals(fromAccount) || null == toAddress || "".equals(toAddress) ||
+            null == amount || 0 > amount)
+            throw new DomainException(ErrorCodes.InvalidInput, "err-invalid-input");
+
+        return getJsonRpcClient().createRequest()
+                .version(JSON_RPC_VERSION)
+                .id(generateId())
+                .method("sendfrom")
+                .params(fromAccount, toAddress, amount,
+                        null == minconf ? 1 : minconf,
+                        null == comment ? "" : comment,
+                        null == comment_to ? "" : comment_to)
+                .returnAs(String.class).execute();
+    }
+
+    /**
+     * Move a specified amount from one account in your wallet to another.
+     * The operation does not published result into blockchain, nevertheless it visible whiting the wallet {@code getBalance} operation.
+     *
+     * NB: the command move fromAccount toAccount more than available, so digit on fromAccount could become negative.
+     * I would rather avoid such behaviour, so has added extra logic.
+     *
+     * @see {@code setAccount} method
+     */
+    public String move(final String fromAccount, final String toAccount, final Double amount){
+        return getJsonRpcClient().createRequest()
+                .version(JSON_RPC_VERSION)
+                .id(generateId())
+                .method("move")
+                .params(fromAccount, toAccount, amount)
+                .returnAs(String.class).execute();
+    }
+
+    /**
      * @return Returns the total available balance.<pre></pre>
      *
      * The available balance is what the wallet considers currently spendable, and is thus affected by options which
      * limit spendability such as -spendzeroconfchange.
      *
+     * If account is not specified, returns the server's total available balance. If account is specified (DEPRECATED),
+     * returns the balance in the account. Note that the account "" is not the same as leaving the parameter out.
+     * The server total may be different to the balance in the default "" account.
+     * @param account (string, optional) DEPRECATED. The account string may be given as a specific account name to find
+     *                the balance associated with wallet keys in a named account, or as the empty string ("") to find
+     *                the balance associated with wallet keys not in any named account, or as "*" to find the balance
+     *                associated with all wallet keys regardless of account. When this option is specified, it calculates
+     *                the balance in a different way than when it is not specified, and which can count spends twice when
+     *                there are conflicting pending transactions (such as those created by the bumpfee command),
+     *                temporarily resulting in low or even negative balances. In general, account balance calculation is
+     *                not considered reliable and has resulted in confusing outcomes, so it is recommended to avoid
+     *                passing this argument.
+     *
+     * @param minconf (numeric, optional, default=1) Only include transactions confirmed at least this many times.
+     * @param includeWatchonly (bool, optional, default=false) Also include balance in watch-only addresses (see 'importaddress')
      */
-    public Double getBalance(){
+    public Double getBalance(final String account, final Integer minconf, final boolean includeWatchonly){
         return getJsonRpcClient().createRequest()
                 .version(JSON_RPC_VERSION)
                 .id(generateId())
                 .method("getbalance")
-                .params()
+                .params( null == account ? "" : account,
+                        null == minconf ? MIN_CONF : minconf,
+                        includeWatchonly)
                 .returnAs(Double.class).execute();
     }
 
