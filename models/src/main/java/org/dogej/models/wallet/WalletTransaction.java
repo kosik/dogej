@@ -6,8 +6,9 @@ import java.util.Arrays;
 
 public class WalletTransaction {
     private String account;
+    private String otheraccount;//appears in move commands
     private String address;
-    private String category;
+    private String category;//move | receive
     private Double amount;
     private String label;
     private Long vout;
@@ -25,6 +26,15 @@ public class WalletTransaction {
     private Boolean abandoned;
     private Long blocktime;
     private Boolean involvesWatchonly;
+    private String comment;
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     @JsonProperty public String getAccount() {
         return account;
@@ -88,6 +98,14 @@ public class WalletTransaction {
 
     @JsonProperty public Long getBlockindex() {
         return blockindex;
+    }
+
+    @JsonProperty public String getOtheraccount() {
+        return otheraccount;
+    }
+
+    public void setOtheraccount(String otheraccount) {
+        this.otheraccount = otheraccount;
     }
 
     public void setBlockhash(String blockhash) {
@@ -186,10 +204,10 @@ public class WalletTransaction {
         this.involvesWatchonly = involvesWatchonly;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return "WalletTransaction{" +
                 "account='" + account + '\'' +
+                ", otheraccount='" + otheraccount + '\'' +
                 ", address='" + address + '\'' +
                 ", category='" + category + '\'' +
                 ", amount=" + amount +

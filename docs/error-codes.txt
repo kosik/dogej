@@ -1,0 +1,1 @@
+{"result":null,"error":{"code":-4,"message":"The wallet already contains the private key for this address or script"},"id":"e30ab218-d321-4ce4-b992-67df5684ac95"}

@@ -6,6 +6,7 @@ import io.github.kosik.simplejsonrpc.client.builder.RequestBuilder;
 import java.util.UUID;
 
 class Operation {
+    final protected int MIN_CONF = 15;
     final protected int JSON_RPC_VERSION = 1;
 
     private JsonRpcClient jsonRpcClient;

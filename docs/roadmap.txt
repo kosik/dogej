@@ -1,0 +1,1 @@
+TODO: if JSON-RPC error, print complete request & response body

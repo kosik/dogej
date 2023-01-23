@@ -11,6 +11,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.dogej.commands.BlockchainAPI;
+import org.dogej.commands.RawTransaction;
 import org.dogej.commands.UtilAPI;
 import org.dogej.commands.WalletAPI;
 
@@ -27,6 +28,7 @@ public class DogecoinNodeClient {
     private BlockchainAPI blockchainAPI;
     private WalletAPI walletAPI;
     private UtilAPI utilAPI;
+    private RawTransaction rawTransaction;
 
     public DogecoinNodeClient(final String host, final String username, final String pw) {
         this.host = host;
@@ -44,7 +46,8 @@ public class DogecoinNodeClient {
                 post.setHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials);
 
                 try (final CloseableHttpResponse httpResponse = getHttpClient().execute(post)) {
-                    return EntityUtils.toString(httpResponse.getEntity(), StandardCharsets.UTF_8);
+                    final String response = EntityUtils.toString(httpResponse.getEntity(), StandardCharsets.UTF_8);
+                    return response;
                 } }
         };
     }
@@ -69,6 +72,13 @@ public class DogecoinNodeClient {
             walletAPI = new WalletAPI(getJsonRpcClient());
         }
         return walletAPI;
+    }
+
+    public RawTransaction getRawTransaction() {
+        if(null == rawTransaction){
+            rawTransaction = new RawTransaction(getJsonRpcClient());
+        }
+        return rawTransaction;
     }
 
     public UtilAPI getUtilAPI() {
