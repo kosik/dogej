@@ -237,11 +237,12 @@ public class WalletAPI extends Operation {
      * If account is not specified, returns the server's total available balance. If account is specified (DEPRECATED),
      * returns the balance in the account. Note that the account "" is not the same as leaving the parameter out.
      * The server total may be different to the balance in the default "" account.
+     *
      * @param account (string, optional) DEPRECATED. The account string may be given as a specific account name to find
-     *                the balance associated with wallet keys in a named account, or as the empty string ("") to find
-     *                the balance associated with wallet keys not in any named account, or as "*" to find the balance
-     *                associated with all wallet keys regardless of account. When this option is specified, it calculates
-     *                the balance in a different way than when it is not specified, and which can count spends twice when
+     *                the balance associated with wallet keys in a named account, or as
+     *        the empty string ("") to find the balance associated with wallet keys not in any named account, or as
+     *        "*" to find the balance associated with all wallet keys regardless of account. When this option is specified,
+     *                it calculates the balance in a different way than when it is not specified, and which can count spends twice when
      *                there are conflicting pending transactions (such as those created by the bumpfee command),
      *                temporarily resulting in low or even negative balances. In general, account balance calculation is
      *                not considered reliable and has resulted in confusing outcomes, so it is recommended to avoid
