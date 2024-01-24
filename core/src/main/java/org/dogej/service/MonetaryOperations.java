@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class MonetaryOperations {
     private DogecoinNodeClient nodeClient;
-    final private double MINER_FEE_AMOUNT = 0.0020d;
+    final private double MINER_FEE_AMOUNT = 0.0035d;
 
     public MonetaryOperations(final DogecoinNodeClient dogecoinNodeClient) {
         //TODO validate
@@ -39,9 +39,10 @@ public class MonetaryOperations {
      *
      * @see org.dogej.commands.WalletAPI.sendToAddress() the major differences, this method returns unspent to fromAddress.
      *
+     * @param remainAddress adress where remain will be sent. If it is null, the remain will be send to address from Unspent
      * @return transaction id
      */
-    public String send(final String fromAddress, final String toAddress, final Double amount){
+    public String send(final String fromAddress, final String toAddress, final Double amount, final String remainAddress){
 
         if(0 > amount)
             throw new DomainException(ErrorCodes.InvalidInput, "err-positive-amount");
@@ -78,13 +79,23 @@ public class MonetaryOperations {
                 .setScale(7, RoundingMode.HALF_UP)
                 .doubleValue();
 
-        destination.put(unspentList.stream().findFirst().get().getAddress(), unspentsAmount);
+        destination.put(null == remainAddress ?
+                unspentList.stream().findFirst().get().getAddress() : remainAddress, unspentsAmount);
 
         final String transactionHEX = getNodeClient().getRawTransaction().createRawTransaction(rawTxInput, destination);
 
         final String signedTxHex = getNodeClient().getRawTransaction().signRawTransaction(transactionHEX);
 
         return getNodeClient().getRawTransaction().sendRawTransaction(signedTxHex);
+    }
+
+    public Double calculateUnspents(final String address){
+        final Collection<Unspent> unspentList = getNodeClient().getWalletAPI()
+                .listUnspent(1L, null, new String[]{address}, true, null);
+
+        final Double totalAmount = unspentList.stream().mapToDouble(u -> u.getAmount()).sum();
+
+        return totalAmount;
     }
 
 }
