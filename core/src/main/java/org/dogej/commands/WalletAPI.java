@@ -251,7 +251,7 @@ public class WalletAPI extends Operation {
      * @param minconf (numeric, optional, default=1) Only include transactions confirmed at least this many times.
      * @param includeWatchonly (bool, optional, default=false) Also include balance in watch-only addresses (see 'importaddress')
      */
-    public Double getBalance(final String account, final Integer minconf, final boolean includeWatchonly){
+    @Deprecated public Double getBalance(final String account, final Integer minconf, final boolean includeWatchonly){
         return getJsonRpcClient().createRequest()
                 .version(JSON_RPC_VERSION)
                 .id(generateId())

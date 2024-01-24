@@ -14,6 +14,9 @@ public class Transaction {
     private Long version;
     private Long locktime;
     private String blockhash;
+    private Long confirmations;//getrawtransaction
+    private  Long time;//getrawtransaction
+    private Long blocktime;//getrawtransaction
 
     private  String vin;//which structure except here ?
     private Vout[] vout;
@@ -54,9 +57,11 @@ public class Transaction {
         return vout;
     }
 
-    @JsonProperty public String getBlockhash() {
-        return blockhash;
-    }
+    @JsonProperty public Long getConfirmations() {return confirmations;}
+
+    @JsonProperty public Long getTime() {return time;}
+
+    @JsonProperty public Long getBlocktime() {return blocktime;}
 
     public void setHex(String hex) {
         this.hex = hex;
@@ -98,8 +103,19 @@ public class Transaction {
         this.blockhash = blockhash;
     }
 
-    @Override
-    public String toString() {
+    public void setConfirmations(Long confirmations) {
+        this.confirmations = confirmations;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
+    }
+
+    public void setBlocktime(Long blocktime) {
+        this.blocktime = blocktime;
+    }
+
+    @Override public String toString() {
         return "Transaction{" +
                 "hex='" + hex + '\'' +
                 ", txid='" + txid + '\'' +
@@ -108,7 +124,10 @@ public class Transaction {
                 ", vsize=" + vsize +
                 ", version=" + version +
                 ", locktime=" + locktime +
-                ", blockhash='" + blockhash + '\'' +
+                ", blockHash='" + blockhash + '\'' +
+                ", confirmations=" + confirmations +
+                ", time=" + time +
+                ", blockTime=" + blocktime +
                 ", vin='" + vin + '\'' +
                 ", vout=" + Arrays.toString(vout) +
                 '}';

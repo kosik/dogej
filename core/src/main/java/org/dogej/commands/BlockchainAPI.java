@@ -83,6 +83,7 @@ public class BlockchainAPI extends Operation {
 
     /**
      * @param height The height index
+     *  curl --user user_name --data-binary '{"jsonrpc": "1.0", "id":"0", "method": "getblockhash", "params": [0]}' -H 'content-type: text/plain;' http://127.0.0.1:22555/
      * @return Returns hash of block in best-block-chain at height provided.
      */
     public String getBlockHash(final Long height){
