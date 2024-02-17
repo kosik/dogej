@@ -8,7 +8,7 @@ The framework consists of two applications:
 The library itself is open source, thus can be extended by any new crypto or FIAT currency instrument.
 
 2) The Back-office application. The module is also an open source client-server application. 
-It helps a merchant accept/reject new BUY orders and publish the resulting transaction in a blockchain.
+It helps a merchant accept/reject new Buy orders and publish the resulting transaction in a blockchain.
 The back-office application provides REST API and GUI interface. So each party can check regulatory information, or just see a list of transactions.
 
 
@@ -18,6 +18,48 @@ The solution is relaying on two dependencies:
 
 Below is the overall flow-diagram:
 
+<img src="ccc_sira_app_plan.png" />
 
+<br/>
+
+See the code of the Library itself here: [link](https://github.com/kosik/dogej/) 
+
+The initial back-office API and message-response structure is below:
+
+
+```
+POST </authorization>
+MojeID token
+
+POST </login>
+String REQ pass
+String REQ identity-key
+
+POST </shareholders>
+A method that issues shareholder data.
+
+POST </issuers>
+A method that issues a list of companies in which a given shareholder
+holds assets.
+
+POST </peers>
+A method to retrieve a list of API addresses that support SIRA
+
+POST </createEquity>
+A method used to generate the data necessary for new equity
+
+{ "model" : {
+	// payload data here
+  },  "messages" : [ ],  "fieldErrors" : [ ],  "success" : true }
+
+Where
+<model> - contains request specific payload data. 
+<fieldErrors>, <messages> - indicates whether API was invalid and how to fix it 
+<success> - API invocation status
+
+{"model":{},"messages":[{"type":"ERROR","message":"Access denied","code":16}],"fieldErrors":[],"success":false }
+
+```
+<br/>
 
 Future has come!
