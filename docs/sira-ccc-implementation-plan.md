@@ -9,7 +9,7 @@ The library itself is open source, thus can be extended by any new crypto or FIA
 
 2) The Back-office application. The module is also an open source client-server application. 
 It helps a merchant accept/reject new Buy orders and publish the resulting transaction in a blockchain.
-The back-office application provides REST API and GUI interface. So each party can check regulatory information, or just see a list of transactions.
+The back-office application provides REST API and GUI interface. So each party can check regulatory information, or just to browse a list of transactions.
 
 
 The solution is relaying on two dependencies:
