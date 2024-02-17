@@ -22,7 +22,7 @@ Below is the overall flow-diagram:
 
 <br/>
 
-See the code of the Library itself here: [link](https://github.com/kosik/dogej/) 
+The major part of the Library itself is already done. See the code here: [link](https://github.com/kosik/dogej/) 
 
 The initial back-office API and message-response structure is below:
 
