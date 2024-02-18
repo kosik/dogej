@@ -1,15 +1,14 @@
 ## doge-j
 
-The lib is an open toolkit to operate with money straight in the Bitcoin derived currency block-chains.
-
-It is a Java client to intercommunicate with [Dogecoin-core](https://github.com/dogecoin/dogecoin) node API.
+The lib is an open source toolkit to operate with money straight in the Bitcoin derived currency block-chains.
 
 The purpose of this library is open comprehensive implementation of JSON-RPC protocol in Java.
 
 The library has done in an Object oriented style. All commands sent to Node are converted from JSON-RPC objects to classic POJO. The library makes this part of the work automatic.
 
+Below is an example of how to receive block header information, and how to send a monetary transfer:
 
-Below is an example of how to receive block header information, and how to send a transfer:
+It is a Java client to intercommunicate with [Dogecoin-core](https://github.com/dogecoin/dogecoin) node API.
 
 ```java
     final DogecoinNodeClient dogecoinClient
@@ -22,7 +21,7 @@ Below is an example of how to receive block header information, and how to send 
     String transactionId = dogecoinClient.getWalletAPI().sendToAddress("ADDRESS-HERE", 200D);
 
 ```
-No need to focus on protocol specifics and other routines. Just work on your application logic. 
+No need more to focus on protocol specifics and other routines. Just work on your application logic. 
 
 Find more examples [here](https://github.com/kosik/dogej/tree/main/utility/src/main/java/org/dogej).
 
