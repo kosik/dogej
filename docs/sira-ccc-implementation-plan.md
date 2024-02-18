@@ -67,7 +67,7 @@ As a prove that the library is working and a real example, I have created the ap
 
 * The app makes transfers in cryptocurrency directly by Telegram nickname;
 
-* Also the app calculates daily block-chain statistics and send out the report to users;
+* Also the app calculates daily block-chain statistics and send-out the report to users;
 <br/><br/>
 
 Future has come!
