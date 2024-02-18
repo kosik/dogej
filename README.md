@@ -41,7 +41,7 @@ rpcauth=myusername:f7efda5c189b999524f151318c0c86$d5b51b3beffbc02b724e5d095828e0
 dogecoin-qt -testnet -server -daemon -rest -rpcauth -alerts -datadir=/var/opt/.dogecoin -conf=/var/opt/.dogecoin/dogecoin.conf &
 ```
 
-5. Import DOGE-J into your application as a regular Maven dependency. Done! Accept crypto has never been as simple as it is now. You have plenty of time to focus on your business itself
+5. Import DOGE-J into your application as a regular Maven dependency. Done! Accept crypto has never been as simple as it is now. You have plenty of time to focus on your business itself.
 ```xml
 <dependency>
     <groupId>org.dogej</groupId>
