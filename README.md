@@ -8,8 +8,6 @@ The library has done in an Object oriented style. All commands sent to Node are 
 
 Below is an example of how to receive block header information, and how to send a monetary transfer:
 
-It is a Java client to intercommunicate with [Dogecoin-core](https://github.com/dogecoin/dogecoin) node API.
-
 ```java
     final DogecoinNodeClient dogecoinClient
           = new DogecoinNodeClient("http://127.0.0.1:22555", "myusername", "secret");
