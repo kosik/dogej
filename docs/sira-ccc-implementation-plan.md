@@ -1,4 +1,4 @@
-## SIRA CCC lib
+## SIRA CCC implementation plan
 
 The solution allows merchants to sell their own Equities and be compliant with CCC/SIRA regulation rules.  
 
