@@ -4,8 +4,7 @@ The solution allows merchants to sell their own Equities and be compliant with C
 
 The framework consists of two applications:
 
-1) The library that creates Equity records in a particular block-chain. At this time 3 blockchains are supported. 
-The library itself is open source, thus can be extended by any new crypto or FIAT currency instrument.
+1) The library that creates Equity records in a particular block-chain. At this time this only Bitcoin derived blockchains are supported, it is 38k froks, if you look on the official Bitcoin repository. The library itself is open source, thus can be extended by any new crypto or FIAT currency instrument.
 
 2) The Back-office application. The module is also an open source client-server application. 
 It helps a merchant accept/reject new Buy orders and publish the resulting transaction in a blockchain.
