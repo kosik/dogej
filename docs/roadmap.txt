@@ -1,1 +1,2 @@
+TODO: test complilance with other crypto-currencies
 TODO: if JSON-RPC error, print complete request & response body
