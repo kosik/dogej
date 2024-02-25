@@ -1,6 +1,6 @@
 ## doge-j
 
-The lib is an open source toolkit to operate with money straight in the Bitcoin derived currency block-chains.
+The lib is an open source toolkit to operate with money straight in the Bitcoin derived currency block-chains. Primary Dogecoin.
 
 The purpose of this library is open comprehensive implementation of JSON-RPC protocol in Java.
 
