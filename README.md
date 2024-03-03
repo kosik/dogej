@@ -1,6 +1,6 @@
 ## doge-j
 
-The lib is an open source toolkit to operate with Dogecoin Core Node.
+The lib is an open source toolkit to operate with Dogecoin Core Node in Java.
 
 The purpose of this library is open comprehensive implementation of JSON-RPC protocol in Java.
 
