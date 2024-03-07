@@ -19,7 +19,7 @@ Below is an example of how to receive block header information, and how to send 
     String transactionId = dogecoinClient.getWalletAPI().sendToAddress("ADDRESS-HERE", 200D);
 
 ```
-No need more to focus on protocol specifics and other routines. Just work on your application logic. 
+No need more to focus on protocol specifics and other routines. Just work on your application logic.
 
 Find more examples [here](https://github.com/kosik/dogej/tree/main/utility/src/main/java/org/dogej).
 
@@ -56,4 +56,4 @@ dogecoin-qt -testnet -server -daemon -rest -rpcauth -alerts -datadir=/var/opt/.d
 </dependency>
 ```
 
-Future has come!
+Create new apps is simple. Future has come!
