@@ -82,7 +82,7 @@ public class FundsOperations {
         dogecoinClient.getWalletAPI().walletPassPhrase(System.getenv("WALLET-PASS-PHRASE"), 1L);
 
         System.out.println(
-            new org.dogej.service.MonetaryOperations(dogecoinClient).send(fromAddress, toAddress, 0.01D)
+            new org.dogej.service.MonetaryOperations(dogecoinClient).send(fromAddress, toAddress, 0.01D, fromAddress)
         );
 
     }//raw-tx
