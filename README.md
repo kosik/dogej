@@ -32,16 +32,16 @@ To use DOGE-J lib you need a configured node server. To save your time, here are
 export DOGE_HOME=/var/opt/dogecoin-1.14.6
 export PATH=$PATH:$DOGE_HOME/bin
 ```
-3. Generate node user and password. The CLI utility for this is in Dogecoin source code [here](https://github.com/dogecoin/dogecoin/tree/master/share/rpcuser). The output string should be appended to `dogecoin.conf` file.
+3. Generate node user and password. The CLI utility for this is in Dogecoin source code [here](https://github.com/dogecoin/dogecoin/tree/master/share/rpcuser). The output result string should be appended to `dogecoin.conf` file.
 ```
 rpcauth=myusername:f7efda5c189b999524f151318c0c86$d5b51b3beffbc02b724e5d095828e0bc8b2456e9ac8757ae3211a5d9b16a22ae
 ```
-4. Launch node in test mode.
+4. Launch node in test mode. Cryptocurrency node setups is done.
 ```
 dogecoin-qt -testnet -server -daemon -rest -rpcauth -alerts -datadir=/var/opt/.dogecoin -conf=/var/opt/.dogecoin/dogecoin.conf &
 ```
 
-5. Import DOGE-J into your application as a regular Maven dependency. Done! Accept crypto has never been as simple as it is now. You have plenty of time to focus on your business itself.
+5. Import DOGE-J lib into your application as a regular Maven dependency. Done! Accept crypto has never been as simple as it is now. You have saved a lot of time. Now you can focus on your business-app logic itself.
 ```xml
 <dependency>
     <groupId>org.dogej</groupId>
