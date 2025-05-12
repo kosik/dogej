@@ -26,7 +26,7 @@ Find more examples [here](https://github.com/kosik/dogej/tree/main/utility/src/m
 ## Configurations
 
 To use DOGE-J lib you need a configured node server. To save your time, here are instructions how do this fast with Dogecoin:
-1. Download binary distribution [here](https://github.com/dogecoin/dogecoin/releases/). Note, it supports other PoW blockchains as well, Bitcoin and Litecoin for sure.
+1. Download binary distribution [here](https://github.com/dogecoin/dogecoin/releases/). Note, the lib supports other PoW blockchains as well, Bitcoin and Litecoin for sure.
 2. Set an environment variable to the distro.
 ```
 export DOGE_HOME=/var/opt/dogecoin-1.14.6
